@@ -151,8 +151,11 @@ namespace PS1Ubr
     {
         public struct STri
         {
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 288)]
-            private List<CVec3f> Verts; // This was Cvec3f Verts[3]
+            // Fix: SizeConst=288 was incorrect (bytes vs elements). CVec3f is 12 bytes,
+            // and we need 3 vertices per triangle, so SizeConst=3.
+            // Also changed from List<> to array - List cannot be marshaled.
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+            public CVec3f[] Verts;
         }
 
         public CVec3f BBoxMin;
