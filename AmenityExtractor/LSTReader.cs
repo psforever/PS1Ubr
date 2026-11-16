@@ -41,12 +41,12 @@ namespace PS1Ubr
                             LstType = line[0],
                             ObjectType = line[1],
                             Id = int.Parse(line[2]),
-                            AbsX = float.Parse(line[3]),
-                            AbsY = float.Parse(line[4]),
-                            AbsZ = float.Parse(line[5]),
-                            ScaleX = float.Parse(line[6]),
-                            ScaleY = float.Parse(line[7]),
-                            ScaleZ = float.Parse(line[8]),
+                            AbsX = ClientFloat.Parse(line[3]),
+                            AbsY = ClientFloat.Parse(line[4]),
+                            AbsZ = ClientFloat.Parse(line[5]),
+                            ScaleX = ClientFloat.Parse(line[6]),
+                            ScaleY = ClientFloat.Parse(line[7]),
+                            ScaleZ = ClientFloat.Parse(line[8]),
                             Pitch = int.Parse(line[9]),
                             Yaw = int.Parse(line[10]),
                             Roll = int.Parse(line[11]),
@@ -81,9 +81,9 @@ namespace PS1Ubr
                         {
                             ObjectType = line[1].Replace("\"", string.Empty),
                             ID = int.Parse(line[2]),
-                            RelX = float.Parse(line[3]),
-                            RelY = float.Parse(line[4]),
-                            RelZ = float.Parse(line[5]),
+                            RelX = ClientFloat.Parse(line[3]),
+                            RelY = ClientFloat.Parse(line[4]),
+                            RelZ = ClientFloat.Parse(line[5]),
                             Unk1 = line[6],
                             Unk2 = line[7],
                             Unk3 = line[8],
@@ -119,15 +119,15 @@ namespace PS1Ubr
                             pseRelativeObjects.Add(new Pse_RelativeObject
                             {
                                 ObjectName = line[1],
-                                RelX = float.Parse(line[2]),
-                                RelY = float.Parse(line[3]),
-                                RelZ = float.Parse(line[4]),
-                                ScaleX = float.Parse(line[5]),
-                                ScaleY = float.Parse(line[6]),
-                                ScaleZ = float.Parse(line[7]),
-                                Pitch = float.Parse(line[8]),
-                                Roll = float.Parse(line[9]),
-                                Yaw = float.Parse(line[10])
+                                RelX = ClientFloat.Parse(line[2]),
+                                RelY = ClientFloat.Parse(line[3]),
+                                RelZ = ClientFloat.Parse(line[4]),
+                                ScaleX = ClientFloat.Parse(line[5]),
+                                ScaleY = ClientFloat.Parse(line[6]),
+                                ScaleZ = ClientFloat.Parse(line[7]),
+                                Pitch = ClientFloat.Parse(line[8]),
+                                Roll = ClientFloat.Parse(line[9]),
+                                Yaw = ClientFloat.Parse(line[10])
                             });
                         }
                     }

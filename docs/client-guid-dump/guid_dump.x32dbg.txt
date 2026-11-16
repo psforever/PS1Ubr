@@ -1,0 +1,37 @@
+// x32dbg script: log every map object the client creates, with the GUID the client allocated, and a marker line at the start of each zone load.
+// Only commands documented in the x64dbg command reference are used. All numbers in x64dbg expressions are hexadecimal.
+// Load it in the Script tab (View > Script; right-click > Load Script, then right-click > Run), or run `scriptload <path to this file>` then `scriptrun`
+// in the command bar, or paste the lines below into the command bar one by one.
+// Image base is fixed at 0x00400000 (no ASLR), so the addresses are absolute.
+//
+// 8c3644 is the instruction right after the call to GuidTable_Register inside CreateMapObjects.
+// There: esi = map object element (0x3C bytes), edi = GUID returned by the allocator (low 16 bits are used), [esp+14] = created game object.
+//   [esi] char* name, [esi+4] x, [esi+8] y, [esi+c] z (float bits, logged as hex), [esi+28] map id, [esi+30] map id again, [[esp+14]+50] object guid field
+// 8c6fc2 is in the map loader state that runs "batch objects_<map>.lst" (once per zone load); edx = pointer to the map name string there.
+bp 8c3644
+SetBreakpointName 8c3644, "guid_dump"
+SetBreakpointCondition 8c3644, "0"
+SetBreakpointSilent 8c3644, 1
+SetBreakpointLog 8c3644, "GUIDDUMP,{d:edi&ffff},{s:[esi]},{x:[esi+4]},{x:[esi+8]},{x:[esi+c]},{d:[esi+28]},{d:[esi+30]},{d:[[esp+14]+50]}"
+bp 8c6fc2
+SetBreakpointName 8c6fc2, "guid_dump_zone"
+SetBreakpointCondition 8c6fc2, "0"
+SetBreakpointSilent 8c6fc2, 1
+SetBreakpointLog 8c6fc2, "GUIDDUMP_MAP,{s:edx}"
+// Do NOT enable SetBreakpointFastResume: it skips logging when the break condition is false.
+// Redirect the Log tab to a file before resuming (Log tab right-click menu), then resume with F9 and travel between zones (warp gates); keep ONE log file for the whole capture.
+// Split it into one CSV per zone afterwards: guid_dump_to_csv.py <log> <output folder>
+//
+// Link capture (optional, same log): which building each object is linked to, and which lock each door is linked to.
+// 8c3993 is the call that adds an object to its owning building in CreateMapObjects: edi = building, [esp] = the object, [esp+4] = its index in the building's list.
+// 943bee is the store of the lock into a door in the door link function: esi = door, ebx = lock. (An object's GUID is the 16-bit value at +30.)
+bp 8c3993
+SetBreakpointName 8c3993, "guid_link_owner"
+SetBreakpointCondition 8c3993, "0"
+SetBreakpointSilent 8c3993, 1
+SetBreakpointLog 8c3993, "GUIDLINK_OWNER,{d:[[esp]+30]&ffff},{d:[edi+30]&ffff},{d:[esp+4]}"
+bp 943bee
+SetBreakpointName 943bee, "guid_link_door"
+SetBreakpointCondition 943bee, "0"
+SetBreakpointSilent 943bee, 1
+SetBreakpointLog 943bee, "GUIDLINK_DOOR,{d:[esi+30]&ffff},{d:[ebx+30]&ffff}"
