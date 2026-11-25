@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmenityExtractor", "Amenity
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPOReader_Console", "FileReaders\MPOReader_Console\MPOReader_Console.csproj", "{B01DE778-902D-48AC-A62E-6CE3BFF48429}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSF-MapGenerator", "PSF-MapGenerator\PSF-MapGenerator.csproj", "{EE1D1229-71C4-46B7-9B8B-FE3CFE359548}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZplReader_Console", "FileReaders\ZplReader_Console\ZplReader_Console.csproj", "{F512F532-5019-4BE1-B397-4136522A4FCC}"
 EndProject
 Global
@@ -49,10 +47,6 @@ Global
 		{B01DE778-902D-48AC-A62E-6CE3BFF48429}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B01DE778-902D-48AC-A62E-6CE3BFF48429}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B01DE778-902D-48AC-A62E-6CE3BFF48429}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE1D1229-71C4-46B7-9B8B-FE3CFE359548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE1D1229-71C4-46B7-9B8B-FE3CFE359548}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE1D1229-71C4-46B7-9B8B-FE3CFE359548}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE1D1229-71C4-46B7-9B8B-FE3CFE359548}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F512F532-5019-4BE1-B397-4136522A4FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F512F532-5019-4BE1-B397-4136522A4FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F512F532-5019-4BE1-B397-4136522A4FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU

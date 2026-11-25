@@ -15,6 +15,13 @@ namespace AmenityExtractor
             return Math.Round(rotation / incrementsPerDegree);
         }
 
+        // Unrounded version of the above: the client rotates by the exact 14-bit angle (table of float sin/cos, 2*pi/16384 per unit),
+        // not by an angle rounded to whole degrees.
+        protected internal static double PS1RotationToExactDegrees(int rotation)
+        {
+            return rotation / (16384d / 360d);
+        }
+
         protected internal static double CounterClockwiseToClockwiseRotation(int rotation)
         {
             var ccw = PS1RotationToDegrees(rotation);
